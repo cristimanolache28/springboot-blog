@@ -20,12 +20,8 @@ import java.util.List;
 @NoArgsConstructor
 public class PostServiceImpl implements PostService {
 
-    private PostRepository postRepository;
-
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
-        this.postRepository = postRepository;
-    }
+    private PostRepository postRepository;
 
     @Override
     public PostDto createPost(PostDto postDto) {
@@ -108,7 +104,6 @@ public class PostServiceImpl implements PostService {
     // convert DTO to entity
     private Post mapToEntity(PostDto postDto) {
         Post post = new Post();
-        post.setId(postDto.getId());
         post.setTitle(postDto.getTitle());
         post.setContent(postDto.getContent());
         post.setDescription(postDto.getDescription());
