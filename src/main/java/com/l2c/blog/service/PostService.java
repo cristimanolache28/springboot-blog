@@ -3,8 +3,6 @@ package com.l2c.blog.service;
 import com.l2c.blog.payload.PostDto;
 import com.l2c.blog.payload.PostResponse;
 
-import java.util.List;
-
 public interface PostService {
     PostDto createPost(PostDto postDto);
 
