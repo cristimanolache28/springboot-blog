@@ -13,10 +13,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
     private String body;
 
+    @Column(nullable = false)
     private String email;
 
     @ManyToOne(fetch = FetchType.LAZY)
