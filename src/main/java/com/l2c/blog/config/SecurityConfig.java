@@ -40,27 +40,11 @@ public class SecurityConfig {
         http.csrf().disable()
                 .authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/auth/**").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(withDefaults());
 
         return http.build();
     }
-
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        UserDetails cristi = User.builder()
-//                .username("cristi")
-//                .password(passwordEncoder().encode("cristi"))
-//                .roles("USER")
-//                .build();
-//
-//        UserDetails admin = User.builder()
-//                .username("admin")
-//                .password(passwordEncoder().encode("admin"))
-//                .roles("ADMIN")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(cristi, admin);
-//    }
 
 }
