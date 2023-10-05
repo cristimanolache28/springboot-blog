@@ -7,6 +7,7 @@ import com.l2c.blog.payload.LoginDto;
 import com.l2c.blog.payload.RegisterDto;
 import com.l2c.blog.repository.RoleRepository;
 import com.l2c.blog.repository.UserRepository;
+import com.l2c.blog.security.JwtTokenProvider;
 import com.l2c.blog.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,14 +29,18 @@ public class AuthServiceImpl implements AuthService {
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
 
+    private JwtTokenProvider jwtTokenProvider;
+
     public AuthServiceImpl(AuthenticationManager authenticationManager,
                            UserRepository userRepository,
                            RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder){
+                           PasswordEncoder passwordEncoder,
+                           JwtTokenProvider jwtTokenProvider){
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
@@ -47,7 +52,9 @@ public class AuthServiceImpl implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "User Logged-in successfully!";
+        String token = jwtTokenProvider.generateToken(authentication);
+
+        return token;
     }
 
     public String register(RegisterDto registerDto) {
