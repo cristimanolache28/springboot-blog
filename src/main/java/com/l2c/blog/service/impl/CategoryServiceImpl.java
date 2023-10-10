@@ -1,13 +1,15 @@
 package com.l2c.blog.service.impl;
 
 import com.l2c.blog.entity.Category;
+import com.l2c.blog.exception.ResourceNotFoundException;
 import com.l2c.blog.payload.CategoryDto;
 import com.l2c.blog.repository.CategoryRepository;
 import com.l2c.blog.service.CategoryService;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -24,6 +26,21 @@ public class CategoryServiceImpl implements CategoryService {
         Category category = mapToEntity(categoryDto);
         Category savedCategory = categoryRepository.save(category);
         return mapToDto(savedCategory);
+    }
+
+    @Override
+    public CategoryDto getCategory(Long categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId));
+        return mapToDto(category);
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categories = categoryRepository.findAll();
+        return categories.stream()
+                .map(this::mapToDto)
+                .collect(Collectors.toList());
     }
 
     private Category mapToEntity(CategoryDto categoryDto) {
