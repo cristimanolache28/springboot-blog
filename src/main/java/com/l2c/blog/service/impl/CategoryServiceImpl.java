@@ -6,6 +6,7 @@ import com.l2c.blog.payload.CategoryDto;
 import com.l2c.blog.repository.CategoryRepository;
 import com.l2c.blog.service.CategoryService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,14 +47,20 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public CategoryDto updateCategory(CategoryDto categoryDto, Long categoryId) {
         Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId)  );
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId));
         category.setId(categoryId);
         category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
 
         Category updatedCategory = categoryRepository.save(category);
-
         return mapToDto(updatedCategory);
+    }
+
+    @Override
+    public void deleteCategory(Long categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId));
+        categoryRepository.delete(category);
     }
 
     private Category mapToEntity(CategoryDto categoryDto) {
