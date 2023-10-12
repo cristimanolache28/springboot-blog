@@ -1,9 +1,11 @@
 package com.l2c.blog.service.impl;
 
+import com.l2c.blog.entity.Category;
 import com.l2c.blog.entity.Post;
 import com.l2c.blog.exception.ResourceNotFoundException;
 import com.l2c.blog.payload.PostDto;
 import com.l2c.blog.payload.PostResponse;
+import com.l2c.blog.repository.CategoryRepository;
 import com.l2c.blog.repository.PostRepository;
 import com.l2c.blog.service.PostService;
 import lombok.NoArgsConstructor;
@@ -20,21 +22,26 @@ import java.util.List;
 @Service
 @NoArgsConstructor
 public class PostServiceImpl implements PostService {
-
     @Autowired
     private PostRepository postRepository;
     @Autowired
     private ModelMapper mapper;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Override
     public PostDto createPost(PostDto postDto) {
+        Category category = categoryRepository.findById(postDto.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", postDto.getCategoryId()));
+
         // convert DTO to entity
         Post post = mapToEntity(postDto);
+        post.setCategory(category);
 
         Post newPost = postRepository.save(post);
 
         // convert entity to DTO
-        PostDto postResponse = mapToDto(post);
+        PostDto postResponse = mapToDto(newPost);
         return postResponse;
     }
 
