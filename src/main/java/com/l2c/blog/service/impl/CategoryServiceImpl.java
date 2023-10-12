@@ -43,6 +43,19 @@ public class CategoryServiceImpl implements CategoryService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public CategoryDto updateCategory(CategoryDto categoryDto, Long categoryId) {
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId)  );
+        category.setId(categoryId);
+        category.setName(categoryDto.getName());
+        category.setDescription(categoryDto.getDescription());
+
+        Category updatedCategory = categoryRepository.save(category);
+
+        return mapToDto(updatedCategory);
+    }
+
     private Category mapToEntity(CategoryDto categoryDto) {
         return modelMapper.map(categoryDto, Category.class);
     }

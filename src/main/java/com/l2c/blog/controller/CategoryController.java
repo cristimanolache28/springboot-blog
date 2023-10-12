@@ -38,4 +38,11 @@ public class CategoryController {
         return ResponseEntity.ok(categoriesDto);
     }
 
+    @PutMapping("{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,
+                                                      @PathVariable("id") Long categoryId) {
+        return ResponseEntity.ok(categoryService.updateCategory(categoryDto, categoryId));
+    }
+
 }
