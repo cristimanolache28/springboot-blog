@@ -2,7 +2,6 @@ package com.l2c.blog.controller;
 
 import com.l2c.blog.payload.CategoryDto;
 import com.l2c.blog.service.CategoryService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
