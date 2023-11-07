@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
     private CategoryService categoryService;
 
@@ -37,14 +37,14 @@ public class CategoryController {
         return ResponseEntity.ok(categoriesDto);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto categoryDto,
                                                       @PathVariable("id") Long categoryId) {
         return ResponseEntity.ok(categoryService.updateCategory(categoryDto, categoryId));
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<String> deleteCategory(@PathVariable("id") Long categoryId) {
         categoryService.deleteCategory(categoryId);
