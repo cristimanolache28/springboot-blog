@@ -1,7 +1,7 @@
 This project was made using Spring Boot, Spring Security 6, JWT, Spring Data JPA, Hibernate, MySQL, Docker & Deploy on AWS. 
 
 
-##Technology Stack:
+## Technology Stack:
 Java platform: Java 17+
 Java Frameworks: Spring Framework
 Build Tool: Maven
@@ -10,7 +10,7 @@ Database: MySql
 Cloud for Deployment: AWS Cloud
 
 
-##Functionalities
+## Features
 1. Posts Management - Create, Read, Update and Delete posts. Provide pagination and sorting.
 2. Comments Management - Create, Read, Update and Delete Comments for Blog Post.
 3. Category Management - Create, Read, Update and Delete Category.
@@ -18,7 +18,7 @@ Cloud for Deployment: AWS Cloud
 
 
 
-##New Things
+## New Things
 DTO - reduce overfetching (retrieving more data then needed) and uderfetching (not retrieving enough data)
     hiding sensitive data
     reducing dependency
@@ -37,14 +37,14 @@ Regarding the Builder pattern.
 Ideally, It is good to use a builder pattern when you have many properties in your class and needs to create many constructors.
 But you can go ahead with the builder pattern to get more exposure to the builder pattern.
 
-##Spring Security
+## Spring Security
 Authentification Filter - create instance of authentification object. This object basically contains the username and password. And then Authentification filter will pass this authetification object to Authentification Manager/
 
 Authentification Manager - manages different authentification providers
 
 Types of authentification: OAuth2, LDAP and DAO.
 
-##JWT
+## JWT
 JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
 
 JWO, or JSON Web Tokens is a standard that is mostly used for securing REST APIs
@@ -74,7 +74,7 @@ Development JWT Steps:
 
 8. Change Login/Signin REST API to Return JWT Token
 
-##Swagger 
+## Swagger 
 springdoc-openapi java library helps to automate the generation of API documentation using spring boot projects.
 
 springdoc-openapi java library provides integration between spring-boot and swagger-uri.
@@ -85,7 +85,7 @@ http://localhost:8080/swagger-ui/index.html
  
 http://localhost:8080/v3/api-docs
 
-##Annotation
+## Annotation
 
 @ResponseStatus annotation cause Spring Boot to respond with the specified HTTP status code whenever this exception is thrown from your controller.
 
