@@ -2,12 +2,12 @@ This project was made using Spring Boot, Spring Security 6, JWT, Spring Data JPA
 
 
 ## Technology Stack:
-Java platform: Java 17+
-Java Frameworks: Spring Framework
-Build Tool: Maven
-IDEA: IntelliJ IDEA
-Database: MySql
-Cloud for Deployment: AWS Cloud
+**Java platform:** Java 17<br>
+**Java Frameworks:** Spring Framework<br>
+**Build Tool:** Maven<br>
+**IDEA:** IntelliJ IDEA<br>
+**Database:** MySql<br>
+**Cloud for Deployment:** AWS Cloud<br>
 
 
 ## Features
